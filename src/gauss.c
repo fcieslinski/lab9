@@ -29,11 +29,9 @@ int eliminate(Matrix *mat, Matrix *b) {
 
         // Zamiana wierszy w macierzy głównej
         if (max_row != k) {
-            for (int j = 0; j < n; j++) {
-                double temp = mat->data[k][j];
-                mat->data[k][j] = mat->data[max_row][j];
-                mat->data[max_row][j] = temp;
-            }
+            double *temp_row = mat->data[k];
+            mat->data[k] = mat->data[max_row];
+            mat->data[max_row] = temp_row;
 
             // Zamiana wierszy w macierzy wynikowej
             double temp_b = b->data[k][0];
@@ -55,5 +53,3 @@ int eliminate(Matrix *mat, Matrix *b) {
 
     return 0;
 }
-
-
